@@ -1,3 +1,7 @@
 import { useGetCollections } from "./useGetCollections";
+import { useGetTop5Collections } from "./useGetTop5Collections";
+export { useGetCollections, useGetTop5Collections }
 
-export { useGetCollections }
+
+import { Collection } from "./useGetCollections";
+export type { Collection }

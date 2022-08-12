@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons';
 interface Props {
 
     setIsVerified: React.Dispatch<React.SetStateAction<boolean>>,
-    setSort: React.Dispatch<React.SetStateAction<string>>,
+    setSort: React.Dispatch<React.SetStateAction<"HIGHEST_24H" | "CHANGE_24H_DESC" | "HIGHEST_TOTAL">>,
     isVerified: boolean,
     sort: "HIGHEST_24H" | "CHANGE_24H_DESC" | "HIGHEST_TOTAL",
 }

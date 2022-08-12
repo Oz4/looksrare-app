@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { request, gql } from 'graphql-request'
 import { LOOKSRARE_ENDPOINT } from "src/data/constants"
 
-interface collectionStatistic {
+export interface Collection {
   address: string
   countOwners: string
   floor: { floorPriceOS: string | null, floorPrice: string, floorChange24h: number, floorChange7d: number, floorChange30d: number }
@@ -69,16 +69,16 @@ const getCollections = async (cursor = { index: 0, collection: "" }, isVerified 
     "sort": sort
   }
 
-  return (await request(LOOKSRARE_ENDPOINT, query, variables)).collections as collectionStatistic[]
+  return (await request(LOOKSRARE_ENDPOINT, query, variables)).collections as Collection[]
 
 }
 
 
-export const useGetCollections = () => {
+export const useGetCollections = (isVerified: boolean, sort: "HIGHEST_24H" | "CHANGE_24H_DESC" | "HIGHEST_TOTAL") => {
 
-  const fetch = ({ pageParam }: any) => getCollections(pageParam)
+  const fetch = ({ pageParam }: any): Promise<Collection[]> => getCollections(pageParam, isVerified, sort)
 
-  return useInfiniteQuery(["collections"], fetch, {
+  return useInfiniteQuery(["collections", isVerified, sort], fetch, {
     getNextPageParam: (lastPage, pages) => {
       if (lastPage.length >= 20)
         return {

@@ -18,6 +18,8 @@ const Screens = () => {
                     headerStyle: {
                         backgroundColor: '#121619',
                     },
+                    headerTitleStyle: {color:'white'},
+                    headerTintColor: 'white'
                 }} />
 
 
@@ -25,7 +27,10 @@ const Screens = () => {
                     headerTitle: (props) => <RankingHeader />,
                     headerStyle: {
                         backgroundColor: '#121619'
-                    }
+                        
+                    },
+                    headerTitleStyle: {color:'white'},
+                    headerTintColor: 'white'
                 }} />
             </Stack.Navigator>
         </NavigationContainer>

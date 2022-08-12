@@ -4,14 +4,10 @@ import Svg, { Path } from 'react-native-svg'
 
 const HomeHeader = () => {
     return (
-        <View style={{
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: "#121619"
-        }}>
+        <View className='w-full items-center justify-center pr-7'>
             <Svg
                 viewBox="0 0 1093 148" fill="none" xmlns="http://www.w3.org/2000/svg"
-                width={150}
+                width={120}
                 height={50}
             >
                 <Path d="M978.379 43.7306C1000.81 21.4231 1037.19 21.4231 1059.62 43.7306L1079 63L1059.62 82.2694C1037.19 104.577 1000.81 104.577 978.379 82.2694L959 63L978.379 43.7306Z" fill="black"></Path>

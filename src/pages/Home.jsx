@@ -1,8 +1,13 @@
 import { Text, View, Image, ScrollView } from 'react-native'
 import React from 'react'
 import { LRButton } from 'src/components/common'
+import { useGetTop5Collections } from 'src/hooks'
+import { CollectionListItem } from '../components/ranking'
 
 const Home = ({ navigation }) => {
+
+    const { data } = useGetTop5Collections()
+
     return (
         <View
             style={{
@@ -13,22 +18,18 @@ const Home = ({ navigation }) => {
                 <View style={{
                     padding: 16
                 }}>
-                    <Text className="-text--lr-colors-text-01 text-5xl">Trade NFTs, Get Rewards</Text>
+                    <Text className="-text--lr-colors-text-01 text-5xl text-center">Trade NFTs, Get Rewards</Text>
                 </View>
                 <View style={{
                     padding: 16
                 }}>
-                    <Text className="-text--lr-colors-text-02 text-base">
+                    <Text className="-text--lr-colors-text-02 text-base text-center">
                         Buy  NFTs (or sell 'em) to <Text className="-text--lr-colors-link-01">earn rewards.</Text>
                         Explore the market to get started.
                     </Text>
                 </View>
 
-                <View style={{
-                    padding: 16,
-                    display: 'flex',
-                    flexDirection: 'row',
-                }}>
+                <View className='p-4 flex-row items-center justify-center'>
                     <LRButton
                         title="List an NFT"
                         mr={8}
@@ -53,10 +54,11 @@ const Home = ({ navigation }) => {
                         }
                     }
                         style={{
-                            width: 380,
-                            height: 380,
-                            borderTopLeftRadius: 16,
-                            borderTopRightRadius: 16
+                            width: "100%",
+                            height: 350,
+                            resizeMode: "contain",
+                            borderTopLeftRadius: 8,
+                            borderTopRightRadius: 8
                         }}
                     ></Image>
 
@@ -79,7 +81,7 @@ const Home = ({ navigation }) => {
                     </View>
 
                     <View style={{
-                        width: 380,
+                        width: "100%",
                         justifyContent: 'center',
                         padding: 16,
                         borderBottomLeftRadius: 16,
@@ -107,13 +109,35 @@ const Home = ({ navigation }) => {
                     justifyContent: 'center',
                     margin: 16,
                 }}>
-                    <Text className="text-3xl -bg--lr-colors-text-01"> Top Collections Today</Text>
+                    <Text className="text-3xl -text--lr-colors-text-01"> Top Collections Today</Text>
                 </View>
 
                 <View style={{
                     padding: 16
                 }}>
-                    <Text>Test</Text>
+
+                    {
+                        data?.map((item, index) => {
+                            return (
+                                <CollectionListItem
+                                    key={item.address}
+                                    address={item.address}
+                                    src={item.logo?.src}
+                                    name={item.name}
+                                    verified={item.isVerified}
+                                    floor={item.floor.floorPrice}
+                                    dailyVol={item.volume.volume24h}
+                                    totalVol={item.volume.volumeAll}
+                                    owners={item.countOwners}
+                                    items={item.totalSupply}
+                                    floorChange={item.floor.floorChange24h}
+                                    dailyVolChange={item.volume.change24h}
+                                    index={index + 1} />
+                            )
+                        })
+                    }
+
+
                 </View>
             </ScrollView>
         </View>
