@@ -269,6 +269,9 @@ module.exports = {
         "--lr-colors-support-info-inverse": "#0043CE",
         "--lr-colors-support-info-bg": "#343A3F",
         "--lr-colors-support-info-bg-inverse": "#EDF5FF"
+      },
+      fontSize:{
+        "xxs": "10px"
       }
 
     },
