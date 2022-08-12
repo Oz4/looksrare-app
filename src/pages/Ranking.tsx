@@ -7,30 +7,9 @@ const Ranking = () => {
 
     const [isVerified, setIsVerified] = useState(true)
     const [sort, setSort] = useState<"HIGHEST_24H" | "CHANGE_24H_DESC" | "HIGHEST_TOTAL">("HIGHEST_24H")
-
     const { data: collections, fetchNextPage, isLoading, isFetchingNextPage, isFetching } = useGetCollections(isVerified, sort)
-
-    const LoadingComponent = () => (
-        <View className="-bg--lr-colors-ui-bg p-4 h-full w-full">
-            <Text className="-text--lr-colors-text-01 text-5xl mb-4">Collections</Text>
-            <Text className="-text--lr-colors-text-01 text-base mb-4">The top NFT collections on LooksRare, ranked by floor price, volume and other statistics.</Text>
-            <View className="flex-row justify-end items-center w-full">
-                <Filter setIsVerified={setIsVerified} setSort={setSort} isVerified={isVerified} sort={sort} />
-            </View>
-
-            <ListItemSkeleton />
-            <ListItemSkeleton />
-            <ListItemSkeleton />
-            <ListItemSkeleton />
-            <ListItemSkeleton />
-            <ListItemSkeleton />
-
-        </View >
-    )
-
     const isFilterChanged = isFetching && !isFetchingNextPage
-    // if (isLoading) return <LoadingComponent />
-
+    const keyExtractor = (item: Collection) => item.address
 
     const renderItem = ({ item, index }: { item: Collection, index: number }) => (
         <View key={item.address}>
@@ -54,11 +33,11 @@ const Ranking = () => {
                         index={index + 1}
                     />
             }
-        </View>)
+        </View>
+    )
 
     return (
         <View className="-bg--lr-colors-ui-bg px-4 h-full w-full">
-
             <FlatList
                 data={collections?.pages?.flat()}
                 renderItem={renderItem}
@@ -98,9 +77,5 @@ const Ranking = () => {
         </View>
     )
 }
-
-
-
-const keyExtractor = (item: Collection) => item.address
 
 export default Ranking
