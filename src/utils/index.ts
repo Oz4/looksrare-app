@@ -1,4 +1,4 @@
 import { convertWeiToEther } from "./convertWeiToEther";
-import { getNumberWithThreeDigitsComma } from "./getNUmberWithThreeDigitsComma";
+import { getNumberWithThreeDigitsComma } from "./getNumberWithThreeDigitsComma";
 
 export { convertWeiToEther, getNumberWithThreeDigitsComma }
