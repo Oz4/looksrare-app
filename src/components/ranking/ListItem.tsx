@@ -2,7 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React, { useState } from 'react'
 //@ts-ignore
 import { convertWeiToEther } from 'src/utils'
-import { LRButton } from '../common'
+import { LRButton, Value } from 'src/components/common'
 import { MaterialIcons } from '@expo/vector-icons';
 
 interface Props {
@@ -56,14 +56,13 @@ const ListItem = ({
     )
 
     const CollectionDailyVolume = () => (
-        <View className="flex-col items-center justify-center">
-            <Text className="-text--lr-colors-text-03 text-xs">
-                {convertWeiToEther(dailyVol || "0")}
-            </Text>
+        <View className="flex-col items-end justify-center">
+            <Value weiValue={dailyVol || "0"} currency="ETH" position='left' format/>
 
-            {dailyVolChange === 0 && <Text className="-text--lr-colors-text-03 text-xs">{dailyVolChange.toFixed(2)}%</Text>}
-            {(dailyVolChange && dailyVolChange > 0) ? <Text className="-text--lr-colors-link-01 text-xs">+{dailyVolChange.toFixed(2)}%</Text> : null}
-            {(dailyVolChange && dailyVolChange < 0) ? <Text className="-text--lr-colors-text-error text-xs">{dailyVolChange.toFixed(2)}%</Text> : null}
+            {dailyVolChange === 0 && <Text className="-text--lr-colors-text-03 text-[10px]">{dailyVolChange.toFixed(2)}%</Text>}
+            {(dailyVolChange && dailyVolChange > 0) ? <Text className="-text--lr-colors-link-01 text-[10px]">+{dailyVolChange.toFixed(2)}%</Text> : null}
+            {(dailyVolChange && dailyVolChange < 0) ? <Text className="-text--lr-colors-text-error text-[10px]">{dailyVolChange.toFixed(2)}%</Text> : null}
+            {!dailyVolChange && <Text className="-text--lr-colors-text-03 text-[10px]"></Text>}
         </View>
     )
 
@@ -76,9 +75,7 @@ const ListItem = ({
             <Text className="-text--lr-colors-text-03 text-xs w-20" >
                 Total Vol
             </Text>
-            <Text className="-text--lr-colors-text-03 text-xs" >
-                {convertWeiToEther(totalVol || "0")}
-            </Text>
+            <Value weiValue={totalVol || "0"} currency="ETH" position='left' format />
         </View>
     )
 
@@ -88,7 +85,7 @@ const ListItem = ({
                 Floor
             </Text>
             <Text className="-text--lr-colors-text-03 text-xs mr-2" >
-                {convertWeiToEther(floor || "0")}
+                <Value weiValue={floor || "0"} currency="ETH" position='left' format />
             </Text>
 
             {floorChange === 0 && <Text className="-text--lr-colors-text-03 text-xxs mt-px">({floorChange}%)</Text>}
