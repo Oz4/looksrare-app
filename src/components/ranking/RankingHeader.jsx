@@ -9,7 +9,7 @@ const RankingHeader = () => {
     }}>
       <Text style={{
         color: '#fff'
-      }}>Stats</Text>
+      }}></Text>
     </View>
   )
 }
