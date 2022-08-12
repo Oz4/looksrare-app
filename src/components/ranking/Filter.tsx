@@ -1,6 +1,7 @@
 import React from 'react'
 import { Actionsheet, Box, Button, Center, Checkbox, Switch, Text, useDisclose, View } from 'native-base';
 import { Feather } from '@expo/vector-icons';
+import * as NavigationBar from 'expo-navigation-bar';
 
 interface Props {
 
@@ -32,14 +33,6 @@ const Filter = ({
             </Button>
             <Actionsheet isOpen={isOpen} onClose={onClose}>
                 <Actionsheet.Content className='-bg--lr-colors-ui-01'>
-
-                    <Box w="100%" h={60} px={4} justifyContent="center">
-                        <Text fontSize="16" color="gray.500" _dark={{
-                            color: "gray.300"
-                        }}>
-                            Albums
-                        </Text>
-                    </Box>
 
                     <Actionsheet.Item className='-bg--lr-colors-ui-01 border-b -border--lr-colors-border-02'>
                         <View className='flex-row justify-between items-center w-[79%]'>
