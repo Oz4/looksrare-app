@@ -2,7 +2,7 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { RankingHeader } from 'src/components/ranking';
+import { Header as RankingHeader } from 'src/components/ranking';
 import { HomeHeader } from 'src/components/home';
 import { Home, Ranking } from 'src/pages';
 

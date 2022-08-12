@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const RankingHeader = () => {
+const Header = () => {
   return (
     <View style={{
       alignItems: 'center',
@@ -14,4 +14,4 @@ const RankingHeader = () => {
   )
 }
 
-export default RankingHeader
+export default Header

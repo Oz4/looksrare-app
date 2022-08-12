@@ -1,34 +1,35 @@
 import { View, Text, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import { useGetCollections, Collection } from 'src/hooks'
-import { CollectionListItem, CollectionListItemSkeleton, ActionSheetFilter } from 'src/components/ranking'
+import { ListItem, ListItemSkeleton, Filter } from 'src/components/ranking'
 
 const Ranking = () => {
 
     const [isVerified, setIsVerified] = useState(true)
     const [sort, setSort] = useState<"HIGHEST_24H" | "CHANGE_24H_DESC" | "HIGHEST_TOTAL">("HIGHEST_24H")
 
-    const { data: collections, fetchNextPage, isLoading, isFetching } = useGetCollections(isVerified, sort)
+    const { data: collections, fetchNextPage, isLoading, isFetchingNextPage, isFetching } = useGetCollections(isVerified, sort)
 
     const LoadingComponent = () => (
         <View className="-bg--lr-colors-ui-bg p-4 h-full w-full">
             <Text className="-text--lr-colors-text-01 text-5xl mb-4">Collections</Text>
             <Text className="-text--lr-colors-text-01 text-base mb-4">The top NFT collections on LooksRare, ranked by floor price, volume and other statistics.</Text>
             <View className="flex-row justify-end items-center w-full">
-                <ActionSheetFilter setIsVerified={setIsVerified} setSort={setSort} isVerified={isVerified} sort={sort} />
+                <Filter setIsVerified={setIsVerified} setSort={setSort} isVerified={isVerified} sort={sort} />
             </View>
 
-            <CollectionListItemSkeleton />
-            <CollectionListItemSkeleton />
-            <CollectionListItemSkeleton />
-            <CollectionListItemSkeleton />
-            <CollectionListItemSkeleton />
-            <CollectionListItemSkeleton />
+            <ListItemSkeleton />
+            <ListItemSkeleton />
+            <ListItemSkeleton />
+            <ListItemSkeleton />
+            <ListItemSkeleton />
+            <ListItemSkeleton />
 
         </View >
     )
 
-    if (isLoading || isFetching) return <LoadingComponent />
+    const isFilterChanged = isFetching && !isFetchingNextPage
+    if (isLoading || isFilterChanged) return <LoadingComponent />
 
     return (
         <View className="-bg--lr-colors-ui-bg p-4 h-full w-full">
@@ -44,18 +45,18 @@ const Ranking = () => {
                 keyExtractor={keyExtractor}
                 ListEmptyComponent={
                     <>
-                        <CollectionListItemSkeleton />
-                        <CollectionListItemSkeleton />
-                        <CollectionListItemSkeleton />
-                        <CollectionListItemSkeleton />
-                        <CollectionListItemSkeleton />
-                        <CollectionListItemSkeleton />
+                        <ListItemSkeleton />
+                        <ListItemSkeleton />
+                        <ListItemSkeleton />
+                        <ListItemSkeleton />
+                        <ListItemSkeleton />
+                        <ListItemSkeleton />
                     </>
                 }
                 ListFooterComponent={
                     <>
-                        <CollectionListItemSkeleton />
-                        <CollectionListItemSkeleton />
+                        <ListItemSkeleton />
+                        <ListItemSkeleton />
                     </>
 
                 }
@@ -64,7 +65,7 @@ const Ranking = () => {
                         <Text className="-text--lr-colors-text-01 text-5xl mb-4">Collections</Text>
                         <Text className="-text--lr-colors-text-01 text-base mb-4">The top NFT collections on LooksRare, ranked by floor price, volume and other statistics.</Text>
                         <View className="flex-row justify-end items-center w-full">
-                            <ActionSheetFilter setIsVerified={setIsVerified} setSort={setSort} isVerified={isVerified} sort={sort} />
+                            <Filter setIsVerified={setIsVerified} setSort={setSort} isVerified={isVerified} sort={sort} />
                         </View>
                     </>
                 }
@@ -75,7 +76,7 @@ const Ranking = () => {
 
 const renderItem = ({ item, index }: { item: Collection, index: number }) => (
     <View key={item.address}>
-        <CollectionListItem
+        <ListItem
             key={item.address}
             address={item.address}
             src={item.logo?.src}

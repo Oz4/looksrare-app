@@ -9,7 +9,7 @@ interface Props {
     isVerified: boolean,
     sort: "HIGHEST_24H" | "CHANGE_24H_DESC" | "HIGHEST_TOTAL",
 }
-const ActionSheetFilter = ({
+const Filter = ({
     setIsVerified,
     setSort,
     isVerified,
@@ -93,4 +93,4 @@ const ActionSheetFilter = ({
         </Center>);
 }
 
-export default ActionSheetFilter
+export default Filter

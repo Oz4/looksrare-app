@@ -2,7 +2,7 @@ import { Center, Skeleton, VStack } from 'native-base';
 import { View, Text, Dimensions, Button } from 'react-native'
 
 
-const CollectionListItemSkeleton = () => {
+const ListItemSkeleton = () => {
 
 
 
@@ -22,4 +22,4 @@ const CollectionListItemSkeleton = () => {
 
 }
 
-export default CollectionListItemSkeleton
+export default ListItemSkeleton

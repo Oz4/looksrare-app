@@ -2,7 +2,7 @@ import { Text, View, Image, ScrollView } from 'react-native'
 import React from 'react'
 import { LRButton } from 'src/components/common'
 import { useGetTop5Collections } from 'src/hooks'
-import { CollectionListItem } from '../components/ranking'
+import { ListItem } from 'src/components/ranking'
 
 const Home = ({ navigation }) => {
 
@@ -119,7 +119,7 @@ const Home = ({ navigation }) => {
                     {
                         data?.map((item, index) => {
                             return (
-                                <CollectionListItem
+                                <ListItem
                                     key={item.address}
                                     address={item.address}
                                     src={item.logo?.src}

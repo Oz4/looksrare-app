@@ -20,7 +20,7 @@ interface Props {
     index: number | null
 }
 
-const CollectionListItem = ({
+const ListItem = ({
     address,
     src,
     name,
@@ -85,7 +85,7 @@ const CollectionListItem = ({
                             Floor
                         </Text>
                         <Text className="-text--lr-colors-text-03 text-xs mr-2" >
-                            {convertWeiToEther(floor)}
+                            {convertWeiToEther(floor || "0")}
                         </Text>
 
                         {floorChange === 0 && <Text className="-text--lr-colors-text-03 text-xxs mt-px">({floorChange}%)</Text>}
@@ -98,7 +98,7 @@ const CollectionListItem = ({
                             Total Vol
                         </Text>
                         <Text className="-text--lr-colors-text-03 text-xs" >
-                            {convertWeiToEther(totalVol)}
+                            {convertWeiToEther(totalVol || "0")}
                         </Text>
 
 
@@ -129,4 +129,4 @@ const CollectionListItem = ({
     )
 }
 
-export default React.memo(CollectionListItem)
+export default React.memo(ListItem)
