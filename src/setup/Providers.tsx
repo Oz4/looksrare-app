@@ -1,11 +1,9 @@
 
 import React, { useRef } from 'react'
-import { TailwindProvider } from 'tailwindcss-react-native';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query" // react-query is deprecated after v4 and migrated to @tanstack/react-query
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
-import * as eva from '@eva-design/eva';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { extendTheme, NativeBaseProvider } from "native-base";
-
+//@ts-ignore
+import { TailwindProvider } from 'tailwindcss-react-native';
 
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
@@ -18,8 +16,8 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                 400: '#2DE370',
             },
         },
-        components:{
-            
+        components: {
+
         }
     });
 
@@ -29,9 +27,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
         <QueryClientProvider client={reactQueryClient.current}>
             <NativeBaseProvider theme={nativeBaseTheme}>
                 <TailwindProvider>
-                    <ApplicationProvider {...eva} theme={eva.light}>
-                        {children}
-                    </ApplicationProvider>
+                    {children}
                 </TailwindProvider>
             </NativeBaseProvider>
         </QueryClientProvider >
