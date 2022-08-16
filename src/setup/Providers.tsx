@@ -6,11 +6,17 @@ import { extendTheme, NativeBaseProvider, StatusBar, } from "native-base";
 import { TailwindProvider } from 'tailwindcss-react-native';
 import * as NavigationBar from 'expo-navigation-bar';
 
+import { useFonts, Inter_100Thin, Inter_200ExtraLight, Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold, Inter_900Black } from '@expo-google-fonts/inter';
+import { Platform } from 'react-native';
 
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
 
     const reactQueryClient = useRef(new QueryClient())
+
+    let [fontsLoaded] = useFonts({
+        Inter_100Thin, Inter_200ExtraLight, Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold, Inter_900Black
+    });
 
     const nativeBaseTheme = extendTheme({
         colors: {
@@ -20,11 +26,18 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
         },
         components: {
 
+            Text: {
+                baseStyle: {
+                    fontFamily: 'Inter_400Regular',
+                }
+            }
         }
     });
 
-    NavigationBar.setBackgroundColorAsync("#121619");
-    NavigationBar.setVisibilityAsync('hidden');
+    if (Platform.OS == 'android') {
+        NavigationBar.setBackgroundColorAsync("#121619");
+    }
+    // NavigationBar.setVisibilityAsync('hidden');
 
     return (
 
