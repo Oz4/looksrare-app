@@ -1,3 +1,4 @@
 import LRButton from "./Button";
 import Value from "./Value";
-export { LRButton, Value };
+import LRText from "./LRText";
+export { LRButton, Value, LRText };
