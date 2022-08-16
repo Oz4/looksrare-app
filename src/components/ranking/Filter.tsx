@@ -1,88 +1,102 @@
-import React from 'react'
-import { Actionsheet, Box, Button, Center, Checkbox, Switch, Text, useDisclose, View } from 'native-base';
+import React, { useEffect, useState } from 'react'
+import { Button, Center, Checkbox, Switch, View } from 'native-base';
 import { Feather } from '@expo/vector-icons';
-import * as NavigationBar from 'expo-navigation-bar';
+import ActionSheet, { SheetManager } from "react-native-actions-sheet";
+import { LRText } from 'src/components/common';
 
 interface Props {
 
     setIsVerified: React.Dispatch<React.SetStateAction<boolean>>,
     setSort: React.Dispatch<React.SetStateAction<"HIGHEST_24H" | "CHANGE_24H_DESC" | "HIGHEST_TOTAL">>,
-    isVerified: boolean,
-    sort: "HIGHEST_24H" | "CHANGE_24H_DESC" | "HIGHEST_TOTAL",
+    isVerified: boolean
 }
+
 const Filter = ({
     setIsVerified,
     setSort,
-    isVerified,
-    sort
+    isVerified
 }: Props) => {
 
-    const {
-        isOpen,
-        onOpen,
-        onClose
-    } = useDisclose();
+    const [selectedCheckBox, setSelectedCheckBox] = useState(1)
+
+
+    useEffect(() => {
+        if (selectedCheckBox === 1)
+            setSort("HIGHEST_24H")
+        else if (selectedCheckBox === 2)
+            setSort("CHANGE_24H_DESC")
+        else if (selectedCheckBox === 3)
+            setSort("HIGHEST_TOTAL")
+    }, [selectedCheckBox]);
+
 
     return (
         <Center>
-            <Button onPress={onOpen} className="rounded-full bg-[#00000000] ">
+            <Button onPress={() => { SheetManager.show("mysheet") }} className="rounded-full bg-[#00000000]">
                 <Feather name="filter" size={24} color="#F3F5F7" style={{
                     width: 24,
-                    height: 24
+                    height: 24,
+                    position: 'absolute',
+                    right: 0
                 }} />
             </Button>
-            <Actionsheet isOpen={isOpen} onClose={onClose}>
-                <Actionsheet.Content className='-bg--lr-colors-ui-01'>
 
-                    <Actionsheet.Item className='-bg--lr-colors-ui-01 border-b -border--lr-colors-border-02'>
-                        <View className='flex-row justify-between items-center w-[79%]'>
-                            <Text className='-text--lr-colors-text-01 w-16'>
-                                {isVerified ? " Verified" : "All"}
-                            </Text>
-                            <Switch
-                                colorScheme="primary"
-                                size="md"
-                                onToggle={() => {
-                                    setIsVerified(prev => !prev)
-                                }}
-                                onTrackColor="#2DE370"
-                                isChecked={isVerified}
-                            />
-                        </View>
-                    </Actionsheet.Item>
 
-                    <Actionsheet.Item className='-bg--lr-colors-ui-01 border-b  -border--lr-colors-border-02 mt-[1px]'>
-                        <Text className='-text--lr-colors-text-01'>
-                            Sort
-                        </Text>
-                    </Actionsheet.Item>
+            <ActionSheet
+                id="mysheet"
+                openAnimationSpeed={5}
+                containerStyle={{
+                    backgroundColor: '#21262A',
+                }}
+                // animated={false}
+                bounceOnOpen={false}
+                statusBarTranslucent={false}
+                drawUnderStatusBar={false}
+            >
+                <View className='mx-4 py-4 flex-row justify-between items-center -border--lr-colors-border-02 border-b'>
+                    <LRText className='-text--lr-colors-text-01 w-16'>
+                        Verified
+                    </LRText>
+                    <Switch
+                        colorScheme="primary"
+                        size="md"
+                        onToggle={() => {
+                            setIsVerified(prev => !prev)
+                        }}
+                        onTrackColor="#2DE370"
+                        isChecked={isVerified}
+                    />
+                </View>
+                <View className='mx-4 py-4 flex-row justify-between items-center -border--lr-colors-border-02 border-b'>
+                    <LRText className='-text--lr-colors-text-01'>
+                        Sort
+                    </LRText>
+                </View>
 
-                    <Actionsheet.Item className='-bg--lr-colors-ui-01'>
-                        <Checkbox value="info" colorScheme="info" isChecked={sort == 'HIGHEST_24H'} onChange={() => { setSort("HIGHEST_24H") }}>
-                            <Text className='-text--lr-colors-text-01'>
-                                24h Vol Change Asc
-                            </Text>
-                        </Checkbox>
-                    </Actionsheet.Item>
+                <View className='-bg--lr-colors-ui-01 mx-4 py-4'>
+                    <Checkbox value="info" colorScheme="purple" isChecked={selectedCheckBox === 1} onChange={() => { setSelectedCheckBox(1) }}>
+                        <LRText className='-text--lr-colors-text-01'>
+                            24h Vol Change Asc
+                        </LRText>
+                    </Checkbox>
+                </View>
 
-                    <Actionsheet.Item className='-bg--lr-colors-ui-01'>
-                        <Checkbox value="info" colorScheme="info" isChecked={sort == 'CHANGE_24H_DESC'} onChange={() => { setSort("CHANGE_24H_DESC") }}>
-                            <Text className='-text--lr-colors-text-01'>
-                                24h Vol Change Desc
-                            </Text>
-                        </Checkbox>
-                    </Actionsheet.Item>
+                <View className='-bg--lr-colors-ui-01 mx-4 py-4'>
+                    <Checkbox value="info" colorScheme="purple" isChecked={selectedCheckBox === 2} onChange={() => { setSelectedCheckBox(2) }}>
+                        <LRText className='-text--lr-colors-text-01'>
+                            24h Vol Change Desc
+                        </LRText>
+                    </Checkbox>
+                </View>
 
-                    <Actionsheet.Item className='-bg--lr-colors-ui-01'>
-                        <Checkbox value="info" colorScheme="info" isChecked={sort == 'HIGHEST_TOTAL'} onChange={() => { setSort("HIGHEST_TOTAL") }}>
-                            <Text className='-text--lr-colors-text-01'>
-                                Highest Total Vol
-                            </Text>
-                        </Checkbox>
-                    </Actionsheet.Item>
-
-                </Actionsheet.Content>
-            </Actionsheet>
+                <View className='-bg--lr-colors-ui-01 mx-4 py-4'>
+                    <Checkbox value="info" colorScheme="purple" isChecked={selectedCheckBox === 3} onChange={() => { setSelectedCheckBox(3) }}>
+                        <LRText className='-text--lr-colors-text-01'>
+                            Highest Total Vol
+                        </LRText>
+                    </Checkbox>
+                </View>
+            </ActionSheet>;
         </Center>);
 }
 
