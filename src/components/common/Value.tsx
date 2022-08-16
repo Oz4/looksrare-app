@@ -4,6 +4,8 @@ import { convertWeiToEther, getNumberWithThreeDigitsComma } from 'src/utils'
 //@ts-ignore
 import ETHLogo from 'src/assets/ETH.ts'
 import { SvgXml } from 'react-native-svg';
+import LRText from "./LRText";
+
 interface Props {
     weiValue: string
     currency: string
@@ -11,6 +13,8 @@ interface Props {
     format: boolean,
     color?: string,
     fontSize?: string,
+    iconW?: string,
+    iconH?: string
 }
 
 const Value = ({
@@ -19,25 +23,27 @@ const Value = ({
     position,
     format,
     color = "-text--lr-colors-text-03",
-    fontSize = "text-xs"
+    fontSize = "text-xs",
+    iconW = "8",
+    iconH = "16",
 }: Props) => {
 
     const textClassName = color + ' ' + fontSize
     const CurrencyIcon = () => {
         if (currency === "ETH") return (
             <View className={position === "right" ? "ml-1" : "mr-1 text"}>
-                <SvgXml xml={ETHLogo} width='8' height='16' />
+                <SvgXml xml={ETHLogo} width={iconW} height={iconH} />
             </View>
         )
         return <></>
     }
 
     return (
-        <View className='flex-row '>
+        <View className='flex-row items-center'>
             {position === 'left' && <CurrencyIcon />}
-            <Text className={textClassName}>
+            <LRText className={textClassName}>
                 {format ? getNumberWithThreeDigitsComma(convertWeiToEther(weiValue)) : convertWeiToEther(weiValue)}
-            </Text>
+            </LRText>
             {position === 'right' && <CurrencyIcon />}
         </View>
     )
