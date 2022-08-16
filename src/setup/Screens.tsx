@@ -7,6 +7,7 @@ import { HomeHeader } from 'src/components/home';
 import { Home, Ranking, Collection } from 'src/pages';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Header as CollectionHeader } from 'src/components/collection';
+
 const Stack = createNativeStackNavigator();
 
 const Tab = createBottomTabNavigator();

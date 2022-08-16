@@ -18,22 +18,23 @@ const Home = ({ navigation }) => {
                 <View style={{
                     padding: 16
                 }}>
-                    <Text className="-text--lr-colors-text-01 text-5xl text-center">Trade NFTs, Get Rewards</Text>
+                    <Text className="-text--lr-colors-text-01 text-5xl text-left">Trade NFTs, Get Rewards</Text>
                 </View>
                 <View style={{
                     padding: 16
                 }}>
-                    <Text className="-text--lr-colors-text-02 text-base text-center">
+                    <Text className="-text--lr-colors-text-02 text-base text-left">
                         Buy  NFTs (or sell 'em) to <Text className="-text--lr-colors-link-01">earn rewards.</Text>
                         Explore the market to get started.
                     </Text>
                 </View>
 
-                <View className='p-4 flex-row items-center justify-center'>
+                <View className='p-4 flex-row items-center justify-left'>
                     <LRButton
                         title="List an NFT"
                         mr={8}
                         color="#000000"
+                        onPress={() => navigation.navigate('Collection')}
                     ></LRButton>
 
                     <LRButton
@@ -45,7 +46,7 @@ const Home = ({ navigation }) => {
                 </View>
                 <View style={{
                     padding: 16,
-                    position: 'relative'
+                    position: 'relative',
                 }}>
 
                     <Image source={
@@ -54,7 +55,7 @@ const Home = ({ navigation }) => {
                         }
                     }
                         style={{
-                            width: "100%",
+                            width: 350,
                             height: 350,
                             resizeMode: "contain",
                             borderTopLeftRadius: 8,
@@ -81,7 +82,7 @@ const Home = ({ navigation }) => {
                     </View>
 
                     <View style={{
-                        width: "100%",
+                        width: 350,
                         justifyContent: 'center',
                         padding: 16,
                         borderBottomLeftRadius: 16,
