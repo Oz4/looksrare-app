@@ -1,20 +1,15 @@
 import { Center, Skeleton, VStack } from 'native-base';
+import { View } from 'react-native';
 
+// exact px values are calculated to match the recylcer list view height
 const ListItemSkeleton = () => {
 
     return (
-        <Center w="100%">
-            <VStack
-                w="100%"
-                borderWidth="1"
-                space={4}
-                overflow="hidden"
-                _dark={{ borderColor: "#f5f5f500" }}
-                _light={{ borderColor: "#f5f5f500" }}
-            >
-                <Skeleton h="20" marginBottom={0} marginTop={4} startColor="#121619" endColor={"#343A3F"} />
-            </VStack>
-        </Center>
+        <View className="w-full h-[108.72px]">
+            <View className='mt-[19px]'>
+                <Skeleton h="70.72px" startColor="#121619" endColor={"#343A3F"} borderRadius={8}/>
+            </View>
+        </View>
     );
 
 }

@@ -1,9 +1,8 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-//@ts-ignore
-import { convertWeiToEther } from 'src/utils'
 import { LRButton, Value } from 'src/components/common'
 import { MaterialIcons } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native"
 
 interface Props {
     address: string | null
@@ -37,13 +36,28 @@ const ListItem = ({
 
     const [show, setShow] = useState(false)
 
+    const navigation = useNavigation()
+
     const CollectionIndex = () => (
         <Text className="-text--lr-colors-text-01 mr-2 w-8 flex-shrink-0 text-center" >{index}</Text>
     )
 
     const CollectionImage = () => (
-        src ? <Image source={{ uri: src }} className="w-10 h-10" />
-            : <View className="w-10 h-10" />
+        src ? <Image
+            source={{
+                uri: src
+            }}
+            className="w-10 h-10"
+            defaultSource={require('src/assets/placeHolder.jpg')}
+
+        />
+            : <View className="w-10 h-10" >
+                <Image
+                    defaultSource={require('src/assets/placeHolder.jpg')}
+                    source={require('src/assets/looksrarePlaceHolderDark.jpg')}
+                    className="w-10 h-10 opacity-20"
+                />
+            </View>
     )
 
     const CollectionName = () => (
@@ -57,7 +71,7 @@ const ListItem = ({
 
     const CollectionDailyVolume = () => (
         <View className="flex-col items-end justify-center">
-            <Value weiValue={dailyVol || "0"} currency="ETH" position='left' format/>
+            <Value weiValue={dailyVol || "0"} currency="ETH" position='left' format />
 
             {dailyVolChange === 0 && <Text className="-text--lr-colors-text-03 text-[10px]">{dailyVolChange.toFixed(2)}%</Text>}
             {(dailyVolChange && dailyVolChange > 0) ? <Text className="-text--lr-colors-link-01 text-[10px]">+{dailyVolChange.toFixed(2)}%</Text> : null}
@@ -130,18 +144,19 @@ const ListItem = ({
 
     return (
         <View className="flex-col py-8 border-b -border-b--lr-colors-border-01">
-
-            <View className="flex-row items-center justify-between">
-                <View className="flex-row items-center">
-                    <CollectionIndex />
-                    <CollectionImage />
-                    <View className="flex-col ml-2 justify-start">
-                        <CollectionName />
-                        <ShowExtraDetailsButton />
+            <TouchableOpacity onPress={() => navigation.navigate("Collection")}>
+                <View className="flex-row items-center justify-between">
+                    <View className="flex-row items-center">
+                        <CollectionIndex />
+                        <CollectionImage />
+                        <View className="flex-col ml-2 justify-start">
+                            <CollectionName />
+                            <ShowExtraDetailsButton />
+                        </View>
                     </View>
+                    <CollectionDailyVolume />
                 </View>
-                <CollectionDailyVolume />
-            </View>
+            </TouchableOpacity>
 
             <HiddenExtraDetails />
 
