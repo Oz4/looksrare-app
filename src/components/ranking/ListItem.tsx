@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import { LRButton, Value } from 'src/components/common'
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native"
@@ -49,7 +49,6 @@ const ListItem = ({
             }}
             className="w-10 h-10"
             defaultSource={require('src/assets/placeHolder.jpg')}
-
         />
             : <View className="w-10 h-10" >
                 <Image
@@ -59,6 +58,7 @@ const ListItem = ({
                 />
             </View>
     )
+
 
     const CollectionName = () => (
         <View className='flex-row items-center justify-center'>
@@ -71,7 +71,7 @@ const ListItem = ({
 
     const CollectionDailyVolume = () => (
         <View className="flex-col items-end justify-center">
-            <Value weiValue={dailyVol || "0"} currency="ETH" position='left' format />
+            <Value weiValue={dailyVol || "0"} currency="ETH" position='left' format maxDigits={2} />
 
             {dailyVolChange === 0 && <Text className="-text--lr-colors-text-03 text-[10px]">{dailyVolChange.toFixed(2)}%</Text>}
             {(dailyVolChange && dailyVolChange > 0) ? <Text className="-text--lr-colors-link-01 text-[10px]">+{dailyVolChange.toFixed(2)}%</Text> : null}
@@ -89,7 +89,7 @@ const ListItem = ({
             <Text className="-text--lr-colors-text-03 text-xs w-20" >
                 Total Vol
             </Text>
-            <Value weiValue={totalVol || "0"} currency="ETH" position='left' format />
+            <Value weiValue={totalVol || "0"} currency="ETH" position='left' format maxDigits={2} />
         </View>
     )
 
@@ -99,7 +99,7 @@ const ListItem = ({
                 Floor
             </Text>
             <Text className="-text--lr-colors-text-03 text-xs mr-2" >
-                <Value weiValue={floor || "0"} currency="ETH" position='left' format />
+                <Value weiValue={floor || "0"} currency="ETH" position='left' format maxDigits={2}/>
             </Text>
 
             {floorChange === 0 && <Text className="-text--lr-colors-text-03 text-xxs mt-px">({floorChange}%)</Text>}
@@ -144,7 +144,10 @@ const ListItem = ({
 
     return (
         <View className="flex-col py-8 border-b -border-b--lr-colors-border-01">
-            <TouchableOpacity onPress={() => navigation.navigate("Collection")}>
+            {/* @ts-ignore */}
+            <TouchableOpacity onPress={() => navigation.navigate("Collection", {
+                address: address
+            })}>
                 <View className="flex-row items-center justify-between">
                     <View className="flex-row items-center">
                         <CollectionIndex />
