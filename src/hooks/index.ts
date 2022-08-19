@@ -1,11 +1,19 @@
-import { useGetCollections } from "./useGetCollections";
+import { useGetCollections, Collection } from "./useGetCollections";
 import { useGetTop5Collections } from "./useGetTop5Collections";
-import { useGetCollectionTokens } from "./useGetCollectionTokens";
+import { useGetCollectionTokens, NFTTokensInterface } from "./useGetCollectionTokens";
 import { useOsCollectionImages } from "./useOSCollectionImage";
+import { useGetCollection, collectionResponseInterface } from "./useGetCollection";
 
-export { useGetCollections, useGetTop5Collections, useGetCollectionTokens, useOsCollectionImages }
+export {
+    useGetCollections,
+    useGetTop5Collections,
+    useGetCollectionTokens,
+    useOsCollectionImages,
+    useGetCollection
+}
 
-import { Collection } from "./useGetCollections";
-import { NFTTokensInterface } from "./useGetCollectionTokens";
-
-export type { Collection, NFTTokensInterface }
+export type {
+    Collection,
+    NFTTokensInterface,
+    collectionResponseInterface
+}
