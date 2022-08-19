@@ -5857,6 +5857,11 @@ join-component@^1.1.0:
   resolved "https://registry.npmjs.org/join-component/-/join-component-1.1.0.tgz"
   integrity sha512-bF7vcQxbODoGK1imE2P9GS9aw4zD0Sd+Hni68IMZLj7zRnquH7dXUmMw9hDI5S/Jzt7q+IyTXN0rSg2GI0IKhQ==
 
+js-abbreviation-number@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/js-abbreviation-number/-/js-abbreviation-number-1.4.0.tgz#b14d5c0f54a285e808da9d6849629eccf1d53aaf"
+  integrity sha512-4sSNspIdfSjCrKm97JZRFgaNgkwBIiVL+hb+piWXqmFW9HaixGa+3G+dSClZvryUZqlcFhMOG3gCeUuAP6lLig==
+
 js-sha3@0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/js-sha3/-/js-sha3-0.8.0.tgz#b9b7a5da73afad7dedd0f8c463954cbde6818840"
