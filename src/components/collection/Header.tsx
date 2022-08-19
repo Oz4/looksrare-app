@@ -6,10 +6,14 @@ const Header = () => {
         <View style={{
             alignItems: 'center',
             justifyContent: 'center',
+            display: 'flex',
+            flex: 1
         }}>
             <Text style={{
-                color: '#fff'
-            }}></Text>
+                color: '#fff',
+                width: "100%",
+            }}>
+            </Text>
         </View>
     )
 }
