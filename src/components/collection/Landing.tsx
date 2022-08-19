@@ -1,6 +1,11 @@
 import { View } from 'react-native'
 import React from 'react'
-import { Banner, CollectionImage, Name, Address, Stats, Description } from '.'
+import Banner from './Banner'
+import CollectionImage from './CollectionImage'
+import Name from './Name'
+import Address from './Address'
+import Stats from './Stats'
+import Description from './Description'
 import { collectionResponseInterface } from 'src/hooks'
 
 const Landing = ({
