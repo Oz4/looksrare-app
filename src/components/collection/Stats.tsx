@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { LRText, Value } from "src/components/common";
-
+import { convertWeiToEther, abbreviateNumber } from "src/utils";
 const Stats = ({
     items,
     owners,
@@ -17,39 +17,42 @@ const Stats = ({
         <View className='flex-row items-center justify-between w-64'>
 
             <View className='flex-col items-start justify-center'>
-                <LRText className='-text--lr-colors-text-01 font-bold text-xl'>9.9k</LRText>
+                <LRText className='-text--lr-colors-text-01 font-bold text-base'>{abbreviateNumber(items, 1)}</LRText>
                 <LRText className='-text--lr-colors-text-03 font-bold text-xs'>Items</LRText>
             </View>
 
             <View className='flex-col items-start justify-center'>
-                <LRText className='-text--lr-colors-text-01 font-bold text-xl'>2.1k</LRText>
+                <LRText className='-text--lr-colors-text-01 font-bold text-base'>{abbreviateNumber(owners, 1)}</LRText>
                 <LRText className='-text--lr-colors-text-03 font-bold text-xs'>Owners</LRText>
             </View>
 
             <View className='flex-col items-start justify-center'>
                 <Value
-                    weiValue="10000000000000"
+                    weiValue={totalVol}
                     currency='ETH'
                     position='left'
-                    format
                     color='-text--lr-colors-text-01'
-                    fontSize='font-bold text-xl'
+                    fontSize='font-bold text-base'
                     iconW='10'
-                    iconH='20'
+                    iconH='16'
+                    abbreviate={true}
+                    abbreviateDecimal={1}
+                    round={true}
                 />
                 <LRText className='-text--lr-colors-text-03 font-bold text-xs'>Total Vol</LRText>
             </View>
 
             <View className='flex-col items-start justify-center'>
                 <Value
-                    weiValue="10000000000000"
+                    weiValue={floor}
                     currency='ETH'
                     position='left'
-                    format
                     color='-text--lr-colors-text-01'
-                    fontSize='font-bold text-xl'
+                    fontSize='font-bold text-base'
                     iconW='10'
-                    iconH='20'
+                    iconH='16'
+                    abbreviate={false}
+                    maxDigits={3}
                 />
                 <LRText className='-text--lr-colors-text-03 font-bold text-xs'>Floor</LRText>
             </View>
