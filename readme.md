@@ -4,7 +4,7 @@
 
 - Install expo go on your phone
 
-- scan the url here [https://expo.dev/@awsaldarwish/looksrare-app?serviceType=classic&distribution=expo-go](https://expo.dev/@awsaldarwish/looksrare-app?serviceType=classic&distribution=expo-go)
+- scan the QR Code in the url here [https://expo.dev/@awsaldarwish/looksrare-app?serviceType=classic&distribution=expo-go](https://expo.dev/@awsaldarwish/looksrare-app?serviceType=classic&distribution=expo-go)
 
 ## Stack
 
