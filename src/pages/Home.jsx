@@ -1,6 +1,6 @@
 import { Text, View, Image, ScrollView } from 'react-native'
 import React from 'react'
-import { LRButton } from 'src/components/common'
+import { LRButton, Accordion } from 'src/components/common'
 import { useGetTop5Collections } from 'src/hooks'
 import { ListItem } from 'src/components/ranking'
 
@@ -15,6 +15,9 @@ const Home = ({ navigation }) => {
             }}
         >
             <ScrollView>
+                {/* <View className='p-4'>
+                    <Accordion />
+                </View> */}
                 <View style={{
                     padding: 16
                 }}>
