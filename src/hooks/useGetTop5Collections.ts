@@ -60,15 +60,14 @@ const getCollections = async (isVerified = true, sort = "HIGHEST_24H") => {
 
     const variables = {
         "pagination": {
-            "first": 5,
-            "cursor": ""
+            "first": 5
         },
         "filter": {
             "isVerified": isVerified
         },
         "sort": sort
     }
-
+    
     return (await request(LOOKSRARE_ENDPOINT, query, variables)).collections as collectionStatistic[]
 
 }

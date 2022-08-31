@@ -58,16 +58,17 @@ const getCollections = async (cursor = { index: 0, collection: "" }, isVerified 
     }
   `
 
-  const variables = {
+  let variables: any = {
     "pagination": {
-      "first": cursor.index,
-      "cursor": cursor.collection
+      "first": cursor.index
     },
     "filter": {
       "isVerified": isVerified
     },
     "sort": sort
   }
+  if (cursor.index > 0)
+    variables.pagination.cursor = cursor.collection
 
   return (await request(LOOKSRARE_ENDPOINT, query, variables)).collections as Collection[]
 
